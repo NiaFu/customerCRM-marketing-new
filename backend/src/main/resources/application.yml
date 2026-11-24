@@ -1,0 +1,20 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/crm}
+    username: ${DB_USER:crm}
+    password: ${DB_PASSWORD:}
+  flyway:
+    enabled: true
+  jackson:
+    default-property-inclusion: non_null
+app:
+  admin:
+    username: ${CRM_ADMIN_USERNAME:admin}
+    password: ${CRM_ADMIN_PASSWORD:}
+  sms:
+    mode: ${SMS_MODE:preview}
+    clicksend-username: ${CLICKSEND_USERNAME:}
+    clicksend-api-key: ${CLICKSEND_API_KEY:}
+    from: ${SMS_FROM:}
