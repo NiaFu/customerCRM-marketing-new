@@ -10,6 +10,8 @@ A focused CRM for customer management, tags, sales pipeline and **operator-confi
 - Safe **preview mode** by default; ClickSend integration enabled only by explicit environment configuration
 - Single-admin Basic Auth for MVP. No passwords, personal customer records or API keys are committed.
 
+[中文启动与使用指南](docs/START_HERE_ZH.md)
+
 ## Quick start with Docker
 1. Install Docker Desktop and Docker Compose.
 2. Copy `.env.example` to `.env`. Set **strong and unique** `CRM_ADMIN_PASSWORD` and `DB_PASSWORD`.
