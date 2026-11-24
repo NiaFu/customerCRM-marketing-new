@@ -10,7 +10,17 @@ A focused CRM for customer management, tags, sales pipeline and **operator-confi
 - Safe **preview mode** by default; ClickSend integration enabled only by explicit environment configuration
 - Single-admin Basic Auth for MVP. No passwords, personal customer records or API keys are committed.
 
-[中文启动与使用指南](docs/START_HERE_ZH.md)
+[中文启动与使用指南](docs/START_HERE_ZH.md) · [使用 Supabase 云数据库的中文指南](docs/SUPABASE_SETUP_ZH.md)
+
+## Cloud database option — Supabase
+
+For a separate Supabase PostgreSQL project, copy `.env.supabase.example` to `.env.supabase`, add the **Connect → Session pooler (5432)** credentials with `sslmode=require`, then run:
+
+```bash
+docker compose --env-file .env.supabase -f docker-compose.supabase.yml up --build
+```
+
+This launches only the web and API containers (no local database). See [中文 Supabase 配置指南](docs/SUPABASE_SETUP_ZH.md). Do not commit `.env.supabase` or use real client data without authorization and a security review.
 
 ## Quick start with Docker
 1. Install Docker Desktop and Docker Compose.

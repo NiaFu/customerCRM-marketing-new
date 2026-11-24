@@ -1,0 +1,26 @@
+# Remote Supabase PostgreSQL: no local database container.
+# Run: docker compose --env-file .env.supabase -f docker-compose.supabase.yml up --build
+# Tables live in the non-exposed crm_app schema, not Supabase Data API's public schema.
+services:
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    environment:
+      DB_URL: ${DB_URL:?Set DB_URL in .env.supabase}
+      DB_USER: ${DB_USER:?Set DB_USER in .env.supabase}
+      DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env.supabase}
+      SPRING_FLYWAY_SCHEMAS: crm_app
+      SPRING_FLYWAY_DEFAULT_SCHEMA: crm_app
+      SPRING_FLYWAY_CREATE_SCHEMAS: "true"
+      CRM_ADMIN_USERNAME: ${CRM_ADMIN_USERNAME:?Set CRM_ADMIN_USERNAME in .env.supabase}
+      CRM_ADMIN_PASSWORD: ${CRM_ADMIN_PASSWORD:?Set CRM_ADMIN_PASSWORD in .env.supabase}
+      SMS_MODE: ${SMS_MODE:-preview}
+      CLICKSEND_USERNAME: ${CLICKSEND_USERNAME:-}
+      CLICKSEND_API_KEY: ${CLICKSEND_API_KEY:-}
+      SMS_FROM: ${SMS_FROM:-}
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:80"
+    depends_on: [backend]
